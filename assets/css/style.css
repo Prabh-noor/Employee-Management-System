@@ -1,0 +1,198 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+/* Warning alerts  */
+.alert.alert-warning.fade.show{
+  border-radius: 12px;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col-lg-12 {
+  display: contents;
+}
+
+.left {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
+
+.right {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url(https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header {
+  margin: 0 auto;
+}
+
+.header > h1 {
+  margin: 0;
+  color: #b955c1;
+  text-decoration: underline;
+}
+
+.header > h2 {
+  margin: 0;
+  color: #4f46a5;
+}
+
+.header > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgba(0,0,0,.4);
+}
+
+form {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-btn{
+  color: #fff;
+  background-color: #0097ff;
+  height: 46px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+.btn-check:checked+.btn-secondary {
+  color: #fff;
+  background-color: #0478c5;
+}
+
+#login .form-field {
+  height: 46px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  transition: .2s;
+  margin-top: 20px;
+}
+
+#employee-form .form-field, #department-form .form-field {
+  height: 46px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  margin: 10px auto;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.form-label {
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+form > button {
+  padding: 12px 10px;
+  border: 0;
+  background: linear-gradient(to right, #de48b5 0%,#0097ff 100%); 
+  border-radius: 3px;
+  margin-top: 7px;
+  margin-bottom: 7px  ;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: 'Rubik', sans-serif;
+}
+#login > button {
+  margin-top: 15px;
+}
+
+.animation {
+  animation-name: move;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.3s;
+}
+
+.a5 {
+  animation-delay: 2.4s;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes left {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
+}
+
+#employee-form, #department-form {
+  padding: 55px;
+  background: #f4f4f4;
+  border-radius: 5%;
+  margin: 35px auto;
+}
