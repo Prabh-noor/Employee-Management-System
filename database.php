@@ -148,6 +148,7 @@ class Database
     public function pagination($limit, $offset, $searchString)
     {
         $this->connectivity();
+        $dateutils= new DateUtils();
         $sql = "SELECT department.seq, employees.seq as employeeseq, employees.name, employees.date_of_birth, employees.date_of_joining, employees.address, employees.gender, employees.local_residence, employees.created_on, department.dept_name
             FROM employees
             LEFT JOIN department
@@ -160,6 +161,25 @@ class Database
         $page = mysqli_query($this->conn, $sql);
         $employees = array();
         while ($row = mysqli_fetch_assoc($page)) {
+            if($row['date_of_birth'] !== null){
+                $date = $row['date_of_birth'];
+                $row['date_of_birth'] = $dateutils->formatDate($date);
+            }
+            if($row['date_of_joining'] !== null){
+                $date = $row['date_of_joining'];
+                $row['date_of_joining'] = $dateutils->formatDate($date);
+            }
+            if($row['local_residence'] !== null){
+                if($row['local_residence'] == 0){
+                    $row['local_residence'] = "No";
+                }else{
+                    $row['local_residence'] = "Yes";
+                }
+            }
+            if($row['created_on'] !== null){
+                $dateTime = $row['created_on'];
+                $row['created_on'] = $dateutils->formatDateTime($dateTime);
+            }
             array_push($employees, $row);
         }
         return $employees;

@@ -54,21 +54,19 @@ require_once('database.php');
                 html += "<table>"+
                 "<thead>"+
                 "<tr>"+
-                "<th>Department sr no.</th>"+
                 "<th>Employee name</th>"+
                 "<th>Date of Birth</th>"+
                 "<th>Date of Joining</th>"+
                 "<th>Address</th>"+
                 "<th>Gender</th>"+
-                "<th>Local Residence</th>"+
+                "<th>Local Resident</th>"+
                 "<th>Created on</th>"+
-                "<th>Department Name</th>"+
+                "<th>Department</th>"+
                 "<th>Actions</th>"+
                 "</tr>"+
                 "</thead>";
                 for (var i = 0; i < response.length; i++){
                     html +="<tr>"+
-                    "<td>"+ response[i].seq + "</td>"+
                     "<td>"+ response[i].name + "</td>"+
                     "<td>"+ response[i].date_of_birth + "</td>"+
                     "<td>"+ response[i].date_of_joining + "</td>"+
@@ -126,21 +124,27 @@ require_once('database.php');
     <p class= "export-btn" align= "center">
         <button onclick= "exportData()">Export To CSV File</button>
     </p>
+    
+    <!-- Bootstrap Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <!-- Custom js -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
 <script>
-function editEmp(seq){
-    window.location= "editDetails.php?employeeseq="+seq;
-}
-function deleteEmp(seq){
-    if (confirm("Are you sure to delete this record?") == true) {
-        var url= "Actions.php?call=deleteEmployee&employeeseq=" + seq;
-        $.get(url, function(response){
-            alert(response);
-        });
+    function editEmp(seq){
+        window.location= "editDetails.php?employeeseq="+seq;
     }
-    else{
-        alert ("Record not deleted");
+    function deleteEmp(seq){
+        if (confirm("Are you sure to delete this record?") == true) {
+            var url= "Actions.php?call=deleteEmployee&employeeseq=" + seq;
+            $.get(url, function(response){
+                alert(response);
+            });
+        }
+        else{
+            alert ("Record not deleted");
+        }
     }
-}
 </script>
