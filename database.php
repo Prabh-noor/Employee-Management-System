@@ -201,7 +201,8 @@ class Database
     public function exportData()
     {
         $this->connectivity();
-        $sql = "SELECT department.seq, employees.seq as employeeseq, employees.name, employees.date_of_birth, employees.date_of_joining, employees.address, employees.gender, employees.local_residence, employees.created_on, department.dept_name
+        $dateutils= new DateUtils();
+        $sql = "SELECT employees.name, employees.date_of_birth, employees.date_of_joining, employees.address, employees.gender, employees.local_residence, employees.created_on, department.dept_name
             FROM employees
             LEFT JOIN department
             ON department.seq = employees.dept_seq
@@ -212,11 +213,30 @@ class Database
         $employees = array();
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
+                if($row['date_of_birth'] !== null){
+                    $date = $row['date_of_birth'];
+                    $row['date_of_birth'] = $dateutils->formatDate($date);
+                }
+                if($row['date_of_joining'] !== null){
+                    $date = $row['date_of_joining'];
+                    $row['date_of_joining'] = $dateutils->formatDate($date);
+                }
+                if($row['local_residence'] !== null){
+                    if($row['local_residence'] == 0){
+                        $row['local_residence'] = "No";
+                    }else{
+                        $row['local_residence'] = "Yes";
+                    }
+                }
+                if($row['created_on'] !== null){
+                    $dateTime = $row['created_on'];
+                    $row['created_on'] = $dateutils->formatDateTime($dateTime);
+                }
                 $employees[] = $row;
             }
         }
         $file = fopen('php://output', 'w');
-        fputcsv($file, array('Department sr no.', 'Employee sr no.', 'Employee Name', 'Date of Birth', 'Date of Joining', 'Address', 'Gender', 'Local Residence', 'Created On', 'Department Name'));
+        fputcsv($file, array('Employee Name', 'Date of Birth', 'Date of Joining', 'Address', 'Gender', 'Local Residence', 'Created On', 'Department Name'));
         if (count($employees) > 0) {
             foreach ($employees as $row) {
                 fputcsv($file, $row);

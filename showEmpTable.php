@@ -90,7 +90,8 @@ require_once('database.php');
                 $(".links").html(html);
                 $(".page-item").on("click", function(){
                     var pageNum= $(this).prop('id');
-                    var url= "Actions.php?call=pagination&page="+pageNum;
+                    var searchedText = $('.searchBox').val();
+                    var url= "Actions.php?call=pagination&page="+pageNum+"&searchedText="+searchedText;
                     $.getJSON(url, function(response){
                         loadEmpTable(response);
                     })
