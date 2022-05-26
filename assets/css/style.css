@@ -8,12 +8,21 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* Warning alerts  */
-.alert.alert-warning.fade.show{
+/* Bootstrap alert  */
+.alert.fade{
   border-radius: 12px;
   justify-content: space-between;
+  position: absolute;
+  top: 8px;
+  left: 30vw;
+  right: 30vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  z-index: 10;
 }
 
+/* Login Form */
 .container {
   display: flex;
   height: 100vh;
@@ -85,6 +94,11 @@ form {
   border-radius: 4px;
   margin-top: 20px;
 }
+
+.radio-btn:hover {
+  background-color: #0478c5;
+}
+
 .btn-check:checked+.btn-secondary {
   color: #fff;
   background-color: #0478c5;
@@ -130,6 +144,7 @@ form > button {
   margin-bottom: 7px  ;
   color: #fff;
   letter-spacing: 1px;
+  border-radius: 8px;
   font-family: 'Rubik', sans-serif;
 }
 #login > button {
@@ -190,9 +205,51 @@ form > button {
   }
 }
 
-#employee-form, #department-form {
+#employee-form, #department-form, #salary-form {
   padding: 55px;
   background: #f4f4f4;
   border-radius: 5%;
   margin: 35px auto;
 }
+
+.row.radio-field .row.select-field{
+  align-items: end;
+}
+
+/* showEmpTable.php */
+#grid-with-search {
+  margin: 30px;
+}
+
+#searchBox {
+  margin: 20px 0;
+}
+
+/* #employees-grid { 
+  border: 2px solid;
+} */
+
+#grid-header {
+  background-color: black;
+  color: #fff;
+}
+
+#grid-details {
+  border-bottom: 2px solid;
+}
+
+#links {
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.page-link {
+  padding: 7px 14px;
+}
+
+#export-btn {
+  margin: 45px auto 100px;
+  display: flex;
+  justify-content: center;
+}
+

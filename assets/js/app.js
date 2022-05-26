@@ -1,3 +1,3 @@
 function closeMsg(){
-    document.getElementById("flash-msg").classList.remove("show");
+   $("#flash-msg").removeClass("show");
 }

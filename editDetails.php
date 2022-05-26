@@ -41,7 +41,7 @@ else{
 </head>
 <body>
     <h1>Edit details:</h1>
-    <form action="editDetails.php" method="Post">
+    <form action="showEmpTable.php" method="Post">
         <input type="hidden" name="seq" value="<?php echo $seq?>">
             <p>Name: 
                 <input type="text" name="name" value="<?php echo $result['name']; ?>"><br>
@@ -99,10 +99,9 @@ else{
         $employeeObj->setAccountCreated(date("Y-m-d H:i:s"));
         $employeeObj->setDeptSeq($_POST['departments']);
         $message= $database->saveEmployees($employeeObj);
-    }  
+        echo "<script>alert('$message');</script>";
+    } 
     ?>
-    <script>
-    alert($message);
-    </script>
+    
 </body>
 </html>

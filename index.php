@@ -13,30 +13,56 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-lg-12">
-            <form action="index.php" method="post" id="employee-form">
-                <div class="header">
-                    <h1>Employee</h1>
+    <form action="index.php" method="post" id="employee-form">
+        <div class="header">
+            <h1>Employee</h1>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="name">Name:</label>
                 </div>
-                <div>
-                    <label class="form-label" for="name">Name:</label> 
-                    <input class="form-field" type="text" name="name" size="43">
-                </div>       
-                <div>
-                    <label class="form-label" for="date_of_birth">Date of Birth:</label>  
-                    <input class="form-field" type="date" name="date_of_birth">
-                </div>        
-                <div>
-                    <label class="form-label" for="date_of_joining">Date of Joining:</label> 
-                    <input class="form-field" type="date" name="date_of_joining">
-                </div>        
-                <div>
-                    <label class="form-label" for="address">Address:</label>
-                    <input class="form-field" type="text" name="address" size="39">
-                </div>       
-                <div style="display: flex;align-items: end;">
-                    <label class="form-label" for="gender">Gender:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="name" placeholder="">
+                </div>     
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="date_of_birth">Date of birth:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" name="date_of_birth" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="date_of_joining">Date of Joining:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" name="date_of_joining" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="address">Address:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="address" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row radio-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="gender">Gender:</label>
+                </div>
+                <div class="col-sm-8">
                     <div class="btn-group" role="group">
                         <input class="btn-check" type="radio" name="gender" value="Male" id="male" autocomplete="off">
                         <label class="btn btn-secondary radio-btn" for="male">Male</label>
@@ -47,58 +73,77 @@
                         <input class="btn-check" type="radio" name="gender" value="Other" id="other" autocomplete="off">
                         <label class="btn btn-secondary radio-btn" for="other">Other</label>
                     </div>
-                </div>        
-                <div style="display: flex;align-items: end;">
-                    <label class="form-label" for="residence">Local Residence:</label>
-                    <div class="btn-group">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row radio-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="residence">Local Resident:</label>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group" role="group">
                         <input class="btn-check" type="radio" name="residence" value="1" id="yes">
                         <label class="btn btn-secondary radio-btn" for="yes">Yes</label>
                         <input class="btn-check" type="radio" name="residence" value="0" id="no">
                         <label class="btn btn-secondary radio-btn" for="no">No</label>
                     </div>
                 </div>
-                <div>
-                    <label class="form-label" for="departments">Departments:</label> 
-                    <select class="form-field" name="departments">
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row select-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="departments">Department:</label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-select" name="departments">
+                        <option selected>Select Deparment</option>
                         <?php 
                         while($department= mysqli_fetch_array($departments)){
                         ?>
-                        <option value="<?php
-                                echo $department['seq'];
-                                ?>">
+                        <option value="<?php echo $department['seq']; ?>">
                             <?php
                                 echo $department['dept_name'];
-                                ?>
+                            ?>
                         </option>
                         <?php
-                            }
+                        }
                         ?>
                     </select>
                 </div>
-                    <button type="submit" name="employees" value="Submit">Submit</button>
-                    <button type="reset" value="Reset">Reset</button>
-            </form>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <form action="index.php" method="post" id="department-form">
-                <div class="header">
-                    <h1>Departments table</h1>
-                </div>
-                <div>
-                    <label class="form-label" for="dept_name">Department name:</label>
-                    <input class="form-field" type="text" name="dept_name" size="25">
-                </div>
-                <div>
-                    <label class="form-label" for="dept_details">Details:</label>
-                    <input class="form-field" type="text" name="dept_details" size="41">
-                </div>
-                <button type="submit" name="department" value="Submit">Submit</button>
-                <button type="reset" value="Reset">Reset</button>
-            </form>
+        <button type="submit" name="employees" value="Submit">Submit</button>
+        <button type="reset" value="Reset">Reset</button>
+    </form>
+    <form action="index.php" method="post" id="department-form">
+        <div class="header">
+            <h1>Departments table</h1>
         </div>
-    </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="dept_name">Department name:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="dept_name" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="dept_details">Details:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="dept_details" placeholder="">
+                </div>
+            </div>
+        </div>
+        <button type="submit" name="department" value="Submit">Submit</button>
+        <button type="reset" value="Reset">Reset</button>
+    </form>
     <!-- Bootstrap Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>

@@ -51,44 +51,42 @@ require_once('database.php');
             // }
             function loadEmpTable(response){
                 var html = "";
-                html += "<table>"+
-                "<thead>"+
-                "<tr>"+
-                "<th>Employee name</th>"+
-                "<th>Date of Birth</th>"+
-                "<th>Date of Joining</th>"+
-                "<th>Address</th>"+
-                "<th>Gender</th>"+
-                "<th>Local Resident</th>"+
-                "<th>Created on</th>"+
-                "<th>Department</th>"+
-                "<th>Actions</th>"+
-                "</tr>"+
-                "</thead>";
+                html += "<div class='row' id='grid-header'>"+
+                            "<div class='col'>Employee name</div>"+
+                            "<div class='col'>D.O.B</div>"+
+                            "<div class='col'>Joining date</div>"+
+                            "<div class='col'>Address</div>"+
+                            "<div class='col'>Gender</div>"+
+                            "<div class='col'>Local Resident</div>"+
+                            "<div class='col'>Created on</div>"+
+                            "<div class='col'>Department</div>"+
+                            "<div class='col'>Actions</div>"+
+                        "</div>";
                 for (var i = 0; i < response.length; i++){
-                    html +="<tr>"+
-                    "<td>"+ response[i].name + "</td>"+
-                    "<td>"+ response[i].date_of_birth + "</td>"+
-                    "<td>"+ response[i].date_of_joining + "</td>"+
-                    "<td>"+ response[i].address + "</td>"+
-                    "<td>"+ response[i].gender + "</td>"+
-                    "<td>"+ response[i].local_residence + "</td>"+
-                    "<td>"+ response[i].created_on + "</td>"+
-                    "<td>"+ response[i].dept_name + "</td>"+
-                    "<td><button type='button' onclick='editEmp("+response[i].employeeseq+")'>Edit</button><button type='button' onclick='deleteEmp("+response[i].employeeseq+")'>Delete</button></td>";
-                    "</tr>";
+                    html +="<div class='row' id='grid-details'>"+
+                        "<div class='col'>"+ response[i].name + "</div>"+
+                        "<div class='col'>"+ response[i].date_of_birth + "</div>"+
+                        "<div class='col'>"+ response[i].date_of_joining + "</div>"+
+                        "<div class='col'>"+ response[i].address + "</div>"+
+                        "<div class='col'>"+ response[i].gender + "</div>"+
+                        "<div class='col'>"+ response[i].local_residence + "</div>"+
+                        "<div class='col'>"+ response[i].created_on + "</div>"+
+                        "<div class='col'>"+ response[i].dept_name + "</div>"+
+                        "<div class='col'><ul class='list-inline m-0'>"+
+                            "<li class='list-inline-item'><button class='btn btn-success btn-sm rounded-0' type='button' onclick='editEmp("+response[i].employeeseq+")' data-toggle='tooltip' data-placement='top' title='Edit'><i class='fa-pen-to-square'></i></button></li>"+
+                            "<li class='list-inline-item'><button class='btn btn-danger btn-sm rounded-0' type='button' onclick='deleteEmp("+response[i].employeeseq+")' data-toggle='tooltip' data-placement='top' title='Delete'><i class='fa-solid fa-trash-can'></i></button></li>"+
+                        "</ul></div>"+
+                    "</div>";
                 }
-                $(".employeeTable").html(html);
+                $("#employees-grid").html(html);
             }
             function loadLinks(response){
                 var html="";
-                for(var i = 1; i <= response; i++ ){ 
-                    html+= "<span>"+
-                    "<a href='#' class='page-item' id="+i+"> "+i+" </a>"+
-                    "</span>";
+                for(var i = 1; i <= response; i++ ){
+                    html+= "<li class='page-item'><a class='page-link' id="+i+" href='#'>"+i+"</a></li>";
                 }
-                $(".links").html(html);
-                $(".page-item").on("click", function(){
+                $("#links").html(html);
+                $(".page-link").on("click", function(){
                     var pageNum= $(this).prop('id');
                     var searchedText = $('.searchBox').val();
                     var url= "Actions.php?call=pagination&page="+pageNum+"&searchedText="+searchedText;
@@ -114,17 +112,19 @@ require_once('database.php');
         </script>
 </head>
 <body>
-    <h1>Employee table </h1>
-    <p>
-        <!-- <form action="showEmpTable.php" method="post" id= "myform" onchange= "submitForm()"> -->
-            <input type="text" name="searchBox" class= "searchBox">
-        <!-- </form> -->
-    </p>
-    <div class="employeeTable"></div>
-    <p class= "links" align="center"></p>
-    <p class= "export-btn" align= "center">
-        <button onclick= "exportData()">Export To CSV File</button>
-    </p>
+    <div id="grid-with-search">
+        <div id="searchBox" class="form-group">
+            <input type="text" name="searchBox" class="form-control searchBox" aria-describedby="searchBox" placeholder="Search here...">
+        </div>
+        <div id="employees-grid"></div>
+    </div>
+    <nav aria-label="...">
+        <ul class="pagination pagination-lg" id="links">
+        </ul>
+    </nav>
+    <div id="export-btn">
+        <button class="btn btn-primary" onclick= "exportData()">Export To CSV File</button>
+    </div>
     
     <!-- Bootstrap Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

@@ -14,50 +14,79 @@ $employees= $database->empDropDown();
     <title>Document</title>
 </head>
 <body>
-    <form action="insertSalary.php" method="post">
-        <p>
-            Employee Name:
-            <select name="emp_name">
-                <?php 
-                    while($employee= mysqli_fetch_array($employees))
-                    {
-                ?>        
-                <option value="<?php echo $employee['seq'];?>"><?php echo $employee['name'];?></option>
-                <?php
-                    }
-                ?>
-            </select>
-        </p>
-        <p>
-            Month:
-            <select name="month">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-            </select>
-        </p>
-        <p>
-            Year:
-            <select name="year">
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-        </p>
-        <p>
-            Salary 
-            <input type="number" name="emp_salary">
-        </p>
-        <input type="submit" name= "savesalary" value="Submit">
+    <form id="salary-form" action="insertSalary.php" method="post">
+        <div class="header">
+            <h1>Salary</h1>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row select-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="dept_details">Employee Name:</label>
+                </div>
+                <div class="col-sm-8">                    
+                    <select class="form-select" name="emp_name">
+                        <?php 
+                            while($employee= mysqli_fetch_array($employees))
+                            {
+                        ?>        
+                        <option value="<?php echo $employee['seq'];?>"><?php echo $employee['name'];?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row select-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="month">Month:</label>
+                </div>
+                <div class="col-sm-8">                    
+                    <select class="form-select" name="month">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row select-field">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="year">Year:</label>
+                </div>
+                <div class="col-sm-8">                    
+                    <select class="form-select" name="year">
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-1 row">
+                <div class="col-sm-4">
+                    <label class="col-form-label form-label" for="emp_salary">Salary:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="emp_salary" placeholder="">
+                </div>     
+            </div>
+        </div>
+        <button type="submit" name= "savesalary" value="Submit">Submit</button>
     </form>
 
     <!-- Bootstrap Popper -->
@@ -75,6 +104,11 @@ if(isset($_POST['savesalary'])){
     $salaryObj->setSalary($_POST['emp_salary']);
     $salaryObj->setDateOfPayment(date("Y-m-d H:i:s"));
     $message= $database->saveSalary($salaryObj);
-    echo $message;
+    echo "<div id='flash-msg' class='alert alert-success alert-dismissible fade show' role='alert'>
+            $message
+        <button type='button' class='close btn btn-outline-dark btn-sm' onclick='closeMsg()' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>";
 }
 ?>
