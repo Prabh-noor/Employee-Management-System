@@ -11,12 +11,12 @@ $employees= $database->empDropDown();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add salary</title>
 </head>
 <body>
     <form id="salary-form" action="insertSalary.php" method="post">
         <div class="header">
-            <h1>Salary</h1>
+            <h1>Add Salary</h1>
         </div>
         <div class="col-12">
             <div class="mb-1 row select-field">
@@ -87,6 +87,7 @@ $employees= $database->empDropDown();
             </div>
         </div>
         <button type="submit" name= "savesalary" value="Submit">Submit</button>
+        <button type="reset" value="Reset">Reset</button>
     </form>
 
     <!-- Bootstrap Popper -->
@@ -104,11 +105,7 @@ if(isset($_POST['savesalary'])){
     $salaryObj->setSalary($_POST['emp_salary']);
     $salaryObj->setDateOfPayment(date("Y-m-d H:i:s"));
     $message= $database->saveSalary($salaryObj);
-    echo "<div id='flash-msg' class='alert alert-success alert-dismissible fade show' role='alert'>
-            $message
-        <button type='button' class='close btn btn-outline-dark btn-sm' onclick='closeMsg()' data-dismiss='alert' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-        </button>
-    </div>";
+    echo "<script>showSuccessMsg('$message');</script>";
+    $_POST = array();
 }
 ?>

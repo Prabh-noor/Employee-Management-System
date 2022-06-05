@@ -95,7 +95,10 @@ class Database
         $sql = "INSERT INTO `Salary`(`emp_seq`, `month`, `year`, `salary`, `date_of_payment`) 
             VALUES ('$empSeq', '$month', '$year', '$empSal', '$dateOfPayment')";
         if (mysqli_query($this->conn, $sql)) {
-            return "Salary record saved!";
+            $sql = "SELECT name FROM employees WHERE seq= $empSeq";
+            $result = mysqli_query($this->conn, $sql);
+            $employee = mysqli_fetch_assoc($result);
+            return "Salary record for “" .$employee['name']. "” saved!";
         } else {
             return mysqli_error($this->conn);
         }
@@ -198,7 +201,7 @@ class Database
         $totalPages = ceil($totalRecords / $limit);
         return $totalPages;
     }
-    public function exportData()
+    public function exportData()    
     {
         $this->connectivity();
         $dateutils= new DateUtils();

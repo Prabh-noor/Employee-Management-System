@@ -3,6 +3,25 @@
     require_once('database.php');
     $database= new database();
     $departments= $database->deptDropDown();
+    $seq = "";
+    $name = "";
+    $dob = "";
+    $doj = "";
+    $address = "";
+    $gender = "";
+    $localResident = "";
+    $selectedDepSeq = "";
+    if(!empty($_POST['seq'])){
+        $seq= $_POST['seq'];
+        $result= $database->getEmpBySeq($seq);
+        $name = $result['name'];
+        $dob = $result['date_of_birth'];
+        $doj = $result['date_of_joining'];
+        $address = $result['address'];
+        $gender= $result['gender'];
+        $localResident= $result['local_residence'];
+        $selectedDepSeq= $result['dept_seq'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +29,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Employee Details</title>
 </head>
 <body>
     <form action="index.php" method="post" id="employee-form">
+        <input type="hidden" name="seq" value="<?php echo $seq?>">
         <div class="header">
             <h1>Employee</h1>
         </div>
@@ -23,7 +43,7 @@
                     <label class="col-form-label form-label" for="name">Name:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="name" placeholder="">
+                    <input type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="">
                 </div>     
             </div>
         </div>
@@ -33,7 +53,7 @@
                     <label class="col-form-label form-label" for="date_of_birth">Date of birth:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="date" class="form-control" name="date_of_birth" placeholder="">
+                    <input type="date" class="form-control" name="date_of_birth" value="<?php echo $dob; ?>" placeholder="">
                 </div>
             </div>
         </div>
@@ -43,7 +63,7 @@
                     <label class="col-form-label form-label" for="date_of_joining">Date of Joining:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="date" class="form-control" name="date_of_joining" placeholder="">
+                    <input type="date" class="form-control" name="date_of_joining" value="<?php echo $doj; ?>" placeholder="">
                 </div>
             </div>
         </div>
@@ -53,46 +73,46 @@
                     <label class="col-form-label form-label" for="address">Address:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="address" placeholder="">
+                    <input type="text" class="form-control" name="address" value="<?php echo $address; ?>" placeholder="">
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <div class="mb-1 row radio-field">
+            <div class="mb-1 row align-items-end">
                 <div class="col-sm-4">
                     <label class="col-form-label form-label" for="gender">Gender:</label>
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group" role="group">
-                        <input class="btn-check" type="radio" name="gender" value="Male" id="male" autocomplete="off">
+                        <input class="btn-check" type="radio" name="gender" value="Male" <?php if($gender == "Male"){echo "checked";}?> id="male" autocomplete="off">
                         <label class="btn btn-secondary radio-btn" for="male">Male</label>
 
-                        <input class="btn-check" type="radio" name="gender" value="Female" id="female" autocomplete="off">
+                        <input class="btn-check" type="radio" name="gender" value="Female" <?php if($gender == "Female"){echo "checked";}?> id="female" autocomplete="off">
                         <label class="btn btn-secondary radio-btn" for="female">Female</label>
 
-                        <input class="btn-check" type="radio" name="gender" value="Other" id="other" autocomplete="off">
+                        <input class="btn-check" type="radio" name="gender" value="Other" <?php if($gender == "Other"){echo "checked";}?> id="other" autocomplete="off">
                         <label class="btn btn-secondary radio-btn" for="other">Other</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <div class="mb-1 row radio-field">
+            <div class="mb-1 row align-items-end">
                 <div class="col-sm-4">
                     <label class="col-form-label form-label" for="residence">Local Resident:</label>
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group" role="group">
-                        <input class="btn-check" type="radio" name="residence" value="1" id="yes">
+                        <input class="btn-check" type="radio" name="residence" value="1" <?php if($localResident === 1){echo "checked";} ?> id="yes">
                         <label class="btn btn-secondary radio-btn" for="yes">Yes</label>
-                        <input class="btn-check" type="radio" name="residence" value="0" id="no">
+                        <input class="btn-check" type="radio" name="residence" value="0" <?php if($localResident === 0){echo "checked";} ?> id="no">
                         <label class="btn btn-secondary radio-btn" for="no">No</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <div class="mb-1 row select-field">
+            <div class="mb-1 row align-items-end">
                 <div class="col-sm-4">
                     <label class="col-form-label form-label" for="departments">Department:</label>
                 </div>
@@ -102,7 +122,8 @@
                         <?php 
                         while($department= mysqli_fetch_array($departments)){
                         ?>
-                        <option value="<?php echo $department['seq']; ?>">
+                        <option value="<?php echo $department['seq']; ?>" 
+                            <?php if ($selectedDepSeq == $department['seq']){echo "selected";}?>>
                             <?php
                                 echo $department['dept_name'];
                             ?>
@@ -115,33 +136,6 @@
             </div>
         </div>
         <button type="submit" name="employees" value="Submit">Submit</button>
-        <button type="reset" value="Reset">Reset</button>
-    </form>
-    <form action="index.php" method="post" id="department-form">
-        <div class="header">
-            <h1>Departments table</h1>
-        </div>
-        <div class="col-12">
-            <div class="mb-1 row">
-                <div class="col-sm-4">
-                    <label class="col-form-label form-label" for="dept_name">Department name:</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="dept_name" placeholder="">
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="mb-1 row">
-                <div class="col-sm-4">
-                    <label class="col-form-label form-label" for="dept_details">Details:</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="dept_details" placeholder="">
-                </div>
-            </div>
-        </div>
-        <button type="submit" name="department" value="Submit">Submit</button>
         <button type="reset" value="Reset">Reset</button>
     </form>
     <!-- Bootstrap Popper -->
@@ -170,18 +164,8 @@ if(isset($_POST['employees'])){
         $employeeObj->setAccountCreated(date("Y-m-d H:i:s"));
         $employeeObj->setDeptSeq($_POST['departments']);
         $message=  $database->saveEmployees($employeeObj);
-        // echo $message;
         echo '<script type="text/javascript">alert("'.$message.'")</script>';
-    }
-}
-if(isset($_POST['department'])){
-    if ($_POST['department']=="Submit"){
-        $departmentObj= new Department();
-        $departmentObj->setDeptName($_POST['dept_name']);
-        $departmentObj->setDeptDetails($_POST['dept_details']);
-        $message= $database->saveDepartment($departmentObj);
-        // echo $message;
-        echo '<script type="text/javascript">alert("'.$message.'")</script>';
+        $_REQUEST = array();
     }
 }
 ?>

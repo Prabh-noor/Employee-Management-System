@@ -22,7 +22,8 @@ if(isset($_POST['login'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/bootstrap-5.2.0/css/bootstrap.css">
+    <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -44,7 +45,7 @@ if(isset($_POST['login'])){
 
     <div class="container">
         <div class="left">
-            <div class="header">
+            <div class="login-header">
                 <h2 class="animation a1">Welcome Back</h2>
                 <h4 class="animation a2">Log in to your account using email and password</h4>
             </div>

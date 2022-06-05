@@ -26,6 +26,8 @@ h1, h2, h3, h4, h5, h6 {
 .container {
   display: flex;
   height: 100vh;
+  max-width: 1200px;
+  padding: 0;
 }
 
 .row {
@@ -60,7 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header {
-  margin: 0 auto;
+  margin: 0 auto 15px;
+  padding: 2%;
 }
 
 .header > h1 {
@@ -69,12 +72,12 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-.header > h2 {
+.login-header > h2 {
   margin: 0;
   color: #4f46a5;
 }
 
-.header > h4 {
+.login-header > h4 {
   margin-top: 10px;
   font-weight: normal;
   font-size: 15px;
@@ -82,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 form {
-  max-width: 80%;
+  max-width: 70%;
   display: flex;
   flex-direction: column;
 }
@@ -212,10 +215,6 @@ form > button {
   margin: 35px auto;
 }
 
-.row.radio-field .row.select-field{
-  align-items: end;
-}
-
 /* showEmpTable.php */
 #grid-with-search {
   margin: 30px;
@@ -224,10 +223,6 @@ form > button {
 #searchBox {
   margin: 20px 0;
 }
-
-/* #employees-grid { 
-  border: 2px solid;
-} */
 
 #grid-header {
   background-color: black;

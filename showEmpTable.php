@@ -1,7 +1,6 @@
 <?php
 require_once('links.php');
 require_once('database.php');
-// $dateutils= new DateUtils();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +62,7 @@ require_once('database.php');
                             "<div class='col'>Actions</div>"+
                         "</div>";
                 for (var i = 0; i < response.length; i++){
-                    html +="<div class='row' id='grid-details'>"+
+                    html +="<div class='row align-items-center' id='grid-details'>"+
                         "<div class='col'>"+ response[i].name + "</div>"+
                         "<div class='col'>"+ response[i].date_of_birth + "</div>"+
                         "<div class='col'>"+ response[i].date_of_joining + "</div>"+
@@ -125,6 +124,10 @@ require_once('database.php');
     <div id="export-btn">
         <button class="btn btn-primary" onclick= "exportData()">Export To CSV File</button>
     </div>
+
+    <form id="editEmployee" action="index.php" method="post">
+        <input type="hidden" name="seq" id="seq">
+    </form>
     
     <!-- Bootstrap Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
@@ -135,7 +138,8 @@ require_once('database.php');
 </html>
 <script>
     function editEmp(seq){
-        window.location= "editDetails.php?employeeseq="+seq;
+        $("#editEmployee #seq").val(seq);
+        $("#editEmployee").submit();
     }
     function deleteEmp(seq){
         if (confirm("Are you sure to delete this record?") == true) {

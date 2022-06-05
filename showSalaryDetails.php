@@ -5,7 +5,7 @@ $database= new Database();
 $salary= new Salary();
 $employees= $database->empDropDown();
 $dateutils= new DateUtils();
-$salaries= null;
+$salaries= "";
 if(!empty($_POST['empSeq'])){
     $empSeq= $_POST['empSeq'];
     $salaries= $database->getSalariesByEmp($empSeq);  
@@ -49,7 +49,7 @@ function submitForm(){
     <br>
     <table>        
         <?php
-        if(sizeof($salaries)>0){
+        if($salaries !== ""){
             echo ("
             <tr>
                 <th>Employee Name</th>
