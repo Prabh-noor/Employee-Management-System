@@ -12,9 +12,9 @@
     <title>Add Department</title>
 </head>
 <body>
-<form action="index.php" method="post" id="department-form">
+    <form action="index.php" method="post" id="department-form">
         <div class="header">
-            <h1>New Department</h1>
+            <h1>Add Department</h1>
         </div>
         <div class="col-12">
             <div class="mb-1 row align-items-center">
@@ -36,9 +36,11 @@
                 </div>
             </div>
         </div>
-        <button type="submit" name="department" value="Submit">Submit</button>
-        <button type="reset" value="Reset">Reset</button>
+        <button class="form-submit-btn" type="submit" name="department" value="Submit">Submit</button>
+        <button class="form-reset-btn" type="reset" value="Reset">Reset</button>
     </form>
+    <!-- Custom js -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
 <?php

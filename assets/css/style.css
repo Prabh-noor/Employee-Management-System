@@ -138,18 +138,49 @@ form {
   margin-right: 5px;
 }
 
-form > button {
-  padding: 12px 10px;
-  border: 0;
-  background: linear-gradient(to right, #de48b5 0%,#0097ff 100%); 
-  border-radius: 3px;
-  margin-top: 7px;
-  margin-bottom: 7px  ;
-  color: #fff;
-  letter-spacing: 1px;
-  border-radius: 8px;
+.form-submit-btn {
+  width: 100%;
   font-family: 'Rubik', sans-serif;
+  letter-spacing: 1px;
+  padding: 12px 10px;
+  color: #fff;
+  cursor: pointer;
+  margin: 7px auto;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 8px;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
+
+.form-reset-btn {
+  width: 100%;
+  font-family: 'Rubik', sans-serif;
+  letter-spacing: 1px;
+  padding: 12px 10px;
+  color: #fff;
+  cursor: pointer;
+  margin: 7px auto;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 8px;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.form-submit-btn:hover, .form-reset-btn:hover {
+  background-position: 100% 0;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
 #login > button {
   margin-top: 15px;
 }
@@ -229,8 +260,14 @@ form > button {
   color: #fff;
 }
 
-#grid-details {
+.grid-details {
   border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-right: 2px solid;
+}
+
+#employees-grid, #salary-grid {
+  margin: 0 40px;
 }
 
 #links {
@@ -246,5 +283,10 @@ form > button {
   margin: 45px auto 100px;
   display: flex;
   justify-content: center;
+}
+
+/* Manage Salaries */
+#show-salary {
+  margin: 50px auto 20px;
 }
 

@@ -24,7 +24,7 @@ if (!isset($_SESSION['email'])) {
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
 
     <!-- Fontawesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.css" integrity="sha512-H2GlJYNMmZLAA8LfFQ8EW7WWVumdleFREr8PUyBZeuRt5mEd25RK11Zo+rHBqSzbp75v2xRFfkmiyO9MBtx3mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body>
-    <header class="section-header">
+    <header class="section-header" id="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand d-md-none d-md-flex" href="#">Categories</a>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Employee</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Employee</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="addDept.php">Department</a>
@@ -53,10 +53,10 @@ if (!isset($_SESSION['email'])) {
                             <a class="nav-link" href="insertSalary.php">Salary</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="showEmpTable.php">Employees Detail</a>
+                            <a class="nav-link" href="manageEmployees.php">Manage Employees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="showSalaryDetails.php">Salaries Detail</a>
+                            <a class="nav-link" href="manageSalaries.php">Manage Salaries</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">Logout</a>
@@ -66,27 +66,6 @@ if (!isset($_SESSION['email'])) {
             </div>
         </nav>
     </header>
-
-    <!-- <div class="d-flex justify-content-end">
-        <button>
-            <a href='index.php'>Employee</a>
-        </button>
-		<button>
-            <a href='addDept.php'>Department</a>
-        </button>
-        <button>
-        	<a href='insertSalary.php'>Salary</a> 
-        </button>
-        <button>
-        	<a href='showEmpTable.php'>Employees Detail</a> 
-        </button>
-        <button>
-        	<a href='showSalaryDetails.php'>Salaries Detail</a>
-        </button>
-        <button>
-            <a href='logout.php'>Log Out</a>
-        </button>
-    </div> -->
 </body>
 
 </html>

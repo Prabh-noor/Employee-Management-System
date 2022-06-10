@@ -53,7 +53,7 @@ if(isset($_POST['login'])){
                 <form action="login.php" method="post" id="login">
                     <input type="email" name="email" class="form-field animation a3" placeholder="Email Address">
                     <input type="password" name="password" class="form-field animation a4" placeholder="Password">
-                    <button class="animation a5" type="submit" name="login" value="login">LOGIN</button>
+                    <button class="form-submit-btn animation a5" type="submit" name="login" value="login">LOGIN</button>
                 </form>
             </div>
         </div>

@@ -15,9 +15,6 @@ if($call== "pagination"){
     if(isset($_GET['searchedText'])){
         $searchedText= $_GET['searchedText'];
     }
-    // if(isset($_POST['searchBox'])){
-    //     $searchedText= $_POST['searchBox'];
-    // }
     else{
         $searchedText= "";
     } 
@@ -31,9 +28,6 @@ if($call== "totalPages"){
     if(isset($_GET['searchedText'])){
         $searchedText= $_GET['searchedText'];
     }
-    // if(isset($_POST['searchBox'])){
-    //     $searchedText= $_POST['searchBox'];
-    // }
     else{
         $searchedText= "";
     }

@@ -86,8 +86,8 @@ $employees= $database->empDropDown();
                 </div>     
             </div>
         </div>
-        <button type="submit" name= "savesalary" value="Submit">Submit</button>
-        <button type="reset" value="Reset">Reset</button>
+        <button class="form-submit-btn" type="submit" name= "savesalary" value="Submit">Submit</button>
+        <button class="form-reset-btn" type="reset" value="Reset">Reset</button>
     </form>
 
     <!-- Bootstrap Popper -->

@@ -45,9 +45,6 @@ require_once('database.php');
                     })
                 });
             });
-            // function submitForm(){ 
-            //     $("#myform").submit(); 
-            // }
             function loadEmpTable(response){
                 var html = "";
                 html += "<div class='row' id='grid-header'>"+
@@ -62,7 +59,7 @@ require_once('database.php');
                             "<div class='col'>Actions</div>"+
                         "</div>";
                 for (var i = 0; i < response.length; i++){
-                    html +="<div class='row align-items-center' id='grid-details'>"+
+                    html +="<div class='row align-items-center grid-details'>"+
                         "<div class='col'>"+ response[i].name + "</div>"+
                         "<div class='col'>"+ response[i].date_of_birth + "</div>"+
                         "<div class='col'>"+ response[i].date_of_joining + "</div>"+
@@ -72,7 +69,7 @@ require_once('database.php');
                         "<div class='col'>"+ response[i].created_on + "</div>"+
                         "<div class='col'>"+ response[i].dept_name + "</div>"+
                         "<div class='col'><ul class='list-inline m-0'>"+
-                            "<li class='list-inline-item'><button class='btn btn-success btn-sm rounded-0' type='button' onclick='editEmp("+response[i].employeeseq+")' data-toggle='tooltip' data-placement='top' title='Edit'><i class='fa-pen-to-square'></i></button></li>"+
+                            "<li class='list-inline-item'><button class='btn btn-success btn-sm rounded-0' type='button' onclick='editEmp("+response[i].employeeseq+")' data-toggle='tooltip' data-placement='top' title='Edit'><i class='fa-solid fa-pen-to-square'></i></button></li>"+
                             "<li class='list-inline-item'><button class='btn btn-danger btn-sm rounded-0' type='button' onclick='deleteEmp("+response[i].employeeseq+")' data-toggle='tooltip' data-placement='top' title='Delete'><i class='fa-solid fa-trash-can'></i></button></li>"+
                         "</ul></div>"+
                     "</div>";
@@ -115,8 +112,8 @@ require_once('database.php');
         <div id="searchBox" class="form-group">
             <input type="text" name="searchBox" class="form-control searchBox" aria-describedby="searchBox" placeholder="Search here...">
         </div>
-        <div id="employees-grid"></div>
     </div>
+    <div id="employees-grid"></div>
     <nav aria-label="...">
         <ul class="pagination pagination-lg" id="links">
         </ul>
@@ -146,6 +143,7 @@ require_once('database.php');
             var url= "Actions.php?call=deleteEmployee&employeeseq=" + seq;
             $.get(url, function(response){
                 alert(response);
+                location.reload();
             });
         }
         else{

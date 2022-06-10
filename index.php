@@ -35,7 +35,7 @@
     <form action="index.php" method="post" id="employee-form">
         <input type="hidden" name="seq" value="<?php echo $seq?>">
         <div class="header">
-            <h1>Employee</h1>
+            <h1>Add/Edit Employee</h1>
         </div>
         <div class="col-12">
             <div class="mb-1 row">
@@ -135,8 +135,8 @@
                 </div>
             </div>
         </div>
-        <button type="submit" name="employees" value="Submit">Submit</button>
-        <button type="reset" value="Reset">Reset</button>
+        <button class="form-submit-btn" type="submit" name="employees" value="Submit">Submit</button>
+        <button class="form-reset-btn" type="reset" value="Reset">Reset</button>
     </form>
     <!-- Bootstrap Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

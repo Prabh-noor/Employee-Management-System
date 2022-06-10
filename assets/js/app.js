@@ -10,3 +10,12 @@ function showSuccessMsg(message){
    html += "</button></div>";
    $('body').prepend(html);
 }
+function setActive() {
+   links = $("#navigation .navbar-nav .nav-link");
+   for(i=0;i<links.length;i++) { 
+     if(document.location.href.indexOf(links[i].href)>=0) {
+         links[i].className='nav-link active';
+     }
+   }
+}
+window.onload = setActive;
