@@ -289,4 +289,7 @@ form {
 #show-salary {
   margin: 50px auto 20px;
 }
+#show-salary #inner-div{
+  margin: 0  auto;
+}
 

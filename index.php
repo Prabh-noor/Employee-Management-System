@@ -2,6 +2,33 @@
     require_once('links.php');
     require_once('database.php');
     $database= new database();
+    if(isset($_POST['employees'])){
+        if($_POST['employees']=="Submit"){
+            $employeeObj= new Employee();
+            if(isset($_POST['seq'])){
+                $employeeObj->setSeq($_POST['seq']);
+            }
+            $employeeObj->setName($_POST['name']);
+            $employeeObj->setDateOfBirth($_POST['date_of_birth']);
+            $employeeObj->setDateOfJoining($_POST['date_of_joining']);
+            $employeeObj->setAddress($_POST['address']);
+            if(isset($_POST['gender'])){
+                $employeeObj->setGender($_POST['gender']);
+            }
+            if(isset($_POST['residence'])){
+                $employeeObj->setLocalResidence($_POST['residence']);
+            }  
+            $employeeObj->setAccountCreated(date("Y-m-d H:i:s"));
+            $employeeObj->setDeptSeq($_POST['departments']);
+            $_REQUEST = array();
+            $_POST =array();
+            $message=  $database->saveEmployees($employeeObj);
+            echo '<script type="text/javascript">alert("'.$message.'")</script>';
+            if(!empty($employeeObj->getSeq())){
+                header('Location: manageEmployees.php');
+            }
+        }
+    }
     $departments= $database->deptDropDown();
     $seq = "";
     $name = "";
@@ -103,9 +130,9 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="btn-group" role="group">
-                        <input class="btn-check" type="radio" name="residence" value="1" <?php if($localResident === 1){echo "checked";} ?> id="yes">
+                        <input class="btn-check" type="radio" name="residence" value="1" <?php if($localResident === "1"){echo "checked";} ?> id="yes">
                         <label class="btn btn-secondary radio-btn" for="yes">Yes</label>
-                        <input class="btn-check" type="radio" name="residence" value="0" <?php if($localResident === 0){echo "checked";} ?> id="no">
+                        <input class="btn-check" type="radio" name="residence" value="0" <?php if($localResident === "0"){echo "checked";} ?> id="no">
                         <label class="btn btn-secondary radio-btn" for="no">No</label>
                     </div>
                 </div>
@@ -143,29 +170,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
     <!-- Custom js -->
     <script src="assets/js/app.js"></script>
+    <script>
+        // if ( window.history.replaceState ) {
+        //     window.history.replaceState( null, null, window.location.href );
+        // }
+    </script>
 </body>
 </html>
-<?php
-if(isset($_POST['employees'])){
-    if($_POST['employees']=="Submit"){
-        $employeeObj= new Employee();
-        $employeeObj->setName($_POST['name']);
-        $employeeObj->setDateOfBirth($_POST['date_of_birth']);
-        $employeeObj->setDateOfJoining($_POST['date_of_joining']);
-        $employeeObj->setAddress($_POST['address']);
-        $gender= "";
-        if(isset($_POST['gender'])){
-            $employeeObj->setGender($_POST['gender']);
-        }
-        $local_residence= "";
-        if(isset($_POST['residence'])){
-            $employeeObj->setLocalResidence($_POST['residence']);
-        }  
-        $employeeObj->setAccountCreated(date("Y-m-d H:i:s"));
-        $employeeObj->setDeptSeq($_POST['departments']);
-        $message=  $database->saveEmployees($employeeObj);
-        echo '<script type="text/javascript">alert("'.$message.'")</script>';
-        $_REQUEST = array();
-    }
-}
-?>

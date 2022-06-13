@@ -25,6 +25,7 @@ $employees= $database->empDropDown();
                 </div>
                 <div class="col-sm-8">                    
                     <select class="form-select" name="emp_name">
+                        <option selected>Select Employee</option>
                         <?php 
                             while($employee= mysqli_fetch_array($employees))
                             {

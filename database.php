@@ -79,7 +79,7 @@ class Database
         $sqlDept = "INSERT INTO `department` (`dept_name`, `dept_details`)
                 VALUES ('$deptName', '$deptDetails')";
         if (mysqli_query($this->conn, $sqlDept)) {
-            return "New department record saved successfully successfully.";
+            return "New department record saved successfully.";
         } else {
             return mysqli_error($this->conn);
         }
@@ -126,7 +126,7 @@ class Database
     public function empDropDown()
     {
         $this->connectivity();
-        $sql = "SELECT * FROM `employees`";
+        $sql = "SELECT * FROM `employees` Order by `seq` DESC";
         $employees = mysqli_query($this->conn, $sql);
         return $employees;
     }
@@ -159,7 +159,7 @@ class Database
         if (!empty($searchString)) {
             $sql .= " WHERE employees.name LIKE '%" . $searchString . "%'";
         }
-        $sql .= " ORDER BY employees.seq
+        $sql .= " ORDER BY employees.seq DESC
             LIMIT $limit OFFSET $offset";
         $page = mysqli_query($this->conn, $sql);
         $employees = array();

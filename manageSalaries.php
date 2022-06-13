@@ -26,7 +26,7 @@ function submitForm(){
 </script>
 <body>
     <form action="manageSalaries.php" id="show-salary" method="post" onchange="submitForm()">
-        <div class="col-12">
+        <div class="col-8" id="inner-div">
             <div class="mb-1 row">
                 <div class="col-sm-5">
                     <label class="col-form-label form-label" for="name">Employee Name:</label>

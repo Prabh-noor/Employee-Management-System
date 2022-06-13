@@ -12,7 +12,7 @@
     <title>Add Department</title>
 </head>
 <body>
-    <form action="index.php" method="post" id="department-form">
+    <form action="addDept.php" method="post" id="department-form">
         <div class="header">
             <h1>Add Department</h1>
         </div>

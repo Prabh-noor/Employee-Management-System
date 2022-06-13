@@ -1,5 +1,6 @@
 function closeMsg(){
    $("#flash-msg").removeClass("show");
+   $("#flash-msg").hide();
 }
 function showSuccessMsg(message){
    var html = "";
@@ -10,6 +11,7 @@ function showSuccessMsg(message){
    html += "</button></div>";
    $('body').prepend(html);
 }
+//set nav link active
 function setActive() {
    links = $("#navigation .navbar-nav .nav-link");
    for(i=0;i<links.length;i++) { 
@@ -19,3 +21,7 @@ function setActive() {
    }
 }
 window.onload = setActive;
+//To prevent form resubmission when reloaded
+if ( window.history.replaceState ) {
+   window.history.replaceState( null, null, window.location.href );
+}
