@@ -209,7 +209,7 @@ class Database
             FROM employees
             LEFT JOIN department
             ON department.seq = employees.dept_seq
-            ORDER BY employees.seq";
+            ORDER BY employees.seq DESC";
         if (!$result = mysqli_query($this->conn, $sql)) {
             exit(mysqli_error($this->conn));
         }

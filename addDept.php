@@ -22,7 +22,7 @@
                     <label class="col-form-label form-label" for="dept_name">Department name:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="dept_name" placeholder="">
+                    <input type="text" class="form-control" name="dept_name" required placeholder="">
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     <label class="col-form-label form-label" for="dept_details">Details:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="dept_details" placeholder="">
+                    <input type="text" class="form-control" name="dept_details" required placeholder="">
                 </div>
             </div>
         </div>

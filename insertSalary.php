@@ -24,8 +24,8 @@ $employees= $database->empDropDown();
                     <label class="col-form-label form-label" for="dept_details">Employee Name:</label>
                 </div>
                 <div class="col-sm-8">                    
-                    <select class="form-select" name="emp_name">
-                        <option selected>Select Employee</option>
+                    <select class="form-select" name="emp_name" required>
+                        <option selected></option>
                         <?php 
                             while($employee= mysqli_fetch_array($employees))
                             {
@@ -67,7 +67,7 @@ $employees= $database->empDropDown();
                     <label class="col-form-label form-label" for="year">Year:</label>
                 </div>
                 <div class="col-sm-8">                    
-                    <select class="form-select" name="year">
+                    <select class="form-select" name="year" required>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
@@ -83,7 +83,7 @@ $employees= $database->empDropDown();
                     <label class="col-form-label form-label" for="emp_salary">Salary:</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="emp_salary" placeholder="">
+                    <input type="number" class="form-control" name="emp_salary" min="1" required placeholder="">
                 </div>     
             </div>
         </div>
@@ -107,6 +107,5 @@ if(isset($_POST['savesalary'])){
     $salaryObj->setDateOfPayment(date("Y-m-d H:i:s"));
     $message= $database->saveSalary($salaryObj);
     echo "<script>showSuccessMsg('$message');</script>";
-    $_POST = array();
 }
 ?>
